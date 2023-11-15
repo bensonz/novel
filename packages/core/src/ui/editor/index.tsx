@@ -201,6 +201,13 @@ export default function Editor({
     }
   }, [editor, defaultValue, content, hydrated, disableLocalStorage]);
 
+  useEffect(() => {
+    if (!editor) return;
+    // update the editor content if the default value changes,
+    // since this editor is managed internally, need a way to update it.
+    editor.commands.setContent(defaultValue);
+  },[defaultValue]);
+
   return (
     <NovelContext.Provider
       value={{
